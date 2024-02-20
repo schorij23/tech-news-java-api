@@ -43,7 +43,7 @@ public class UserController {
     return returnUser;
 }
 
-@PostMapping("/api/user")
+@PostMapping("/api/users")
     public User addUser(@RequestBody User user) {
     // Encrypt password
     user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
@@ -51,7 +51,18 @@ public class UserController {
     return user;
 }
 
-@DeleteMapping("/api/user/{id}")
+@PutMapping("/api/users/{id}")
+    public User updateUser(@PathVariable int id, @RequestBody User user) {
+    User tempUser = repository.getById(id);
+
+    if (!tempUser.equals(null)) {
+        user.setId(tempUser.getId());
+        repository.save(user);
+    }
+    return user;
+}
+
+@DeleteMapping("/api/users/{id}")
 @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable int id) {
     repository.deleteById(id);
