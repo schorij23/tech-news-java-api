@@ -1,4 +1,4 @@
-package Group.com.technews.technewsjavaapi;
+package com.technews.technewsjavaapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
